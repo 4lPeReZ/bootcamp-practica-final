@@ -1,5 +1,5 @@
 // services/getusers.service.js
-const API_URL = 'https://randomuser.me/api/?results=150';
+const API_URL = 'https://randomuser.me/api/?results=100';
 
 // La función getUsers es una función asincrónica que realiza la solicitud a la API.
 async function getUsers() {
