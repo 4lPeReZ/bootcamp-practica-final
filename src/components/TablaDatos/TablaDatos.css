@@ -38,3 +38,8 @@
     margin-top: 1rem;
     /* Agrega margen superior para espaciarlos del contenido superior */
 }
+
+.checkbox-seniors {
+    margin-right: 0.5rem;
+    /* Agrega margen derecho para espaciarlos entre sí */
+}

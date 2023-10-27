@@ -14,6 +14,9 @@ function TablaDatos() {
   // Estado local para la página actual
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Estado local para mostrar solo usuarios mayores de 50 años
+  const [showOnlySeniors, setShowOnlySeniors] = useState(false);
+
   // Utiliza el efecto para cargar datos de usuarios cuando el componente se monta
   useEffect(() => {
     getUsers()
@@ -40,16 +43,40 @@ function TablaDatos() {
     }
   };
 
+  // Función para cambiar si se muestran solo usuarios mayores de 50 años
+  const toggleShowOnlySeniors = () => {
+    setShowOnlySeniors(!showOnlySeniors);
+    setCurrentPage(1); // Reiniciar a la primera página
+
+    if (!showOnlySeniors) {
+      // Si el checkbox se activa, filtra los usuarios mayores de 50 años
+      setTablaFiltrada(users.filter((user) => user.dob.age > 50));
+    } else {
+      // Si el checkbox se desactiva, muestra todos los usuarios
+      setTablaFiltrada(users);
+    }
+  };
+
   return (
     <div>
       <h2 className="tabla-titulo">Tabla de Datos de Usuarios</h2>
+
+      {/* Checkbox para mostrar solo usuarios mayores de 50 años */}
+      <label>
+        <input
+          className="checkbox-seniors"
+          type="checkbox"
+          checked={showOnlySeniors}
+          onChange={toggleShowOnlySeniors}
+        />
+        Mostrar solo usuarios mayores de 50 años
+      </label>
 
       {/* Componente Buscador para filtrar la tabla */}
       <Buscador tablaDatos={users} setTablaFiltrada={setTablaFiltrada} />
 
       {/* Tabla para mostrar los datos */}
       <table className="tabla-datos">
-        <caption>Lista de usuarios</caption>
         <thead>
           <tr>
             <th scope="col">Nombre</th>
