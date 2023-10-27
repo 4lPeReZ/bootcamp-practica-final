@@ -12,12 +12,25 @@
     margin-bottom: 1rem;
 }
 
+/* Estilos para la etiqueta (label) */
+label {
+    text-align: center;
+    width: 20%;
+    padding: 0.5rem;
+    font-size: 1rem;
+/*     color: #646cff; */
+    /* Cambia el color de la etiqueta */
+    font-weight: bold;
+    /* Hace que el texto sea negrita */
+}
+
 /* Estilos para el input */
-input {
-    width: 90%;
+.buscador-input {
+    width: 80%;
     padding: 0.5rem;
     font-size: 1rem;
     margin-right: 2rem;
+    margin-left: 2rem;
 }
 
 /* Estilos para el botón */

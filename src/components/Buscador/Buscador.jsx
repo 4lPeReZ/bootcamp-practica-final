@@ -11,13 +11,13 @@ function Buscador({ tablaDatos, setTablaFiltrada }) {
   const buscar = () => {
     // Filtra los datos de la tabla según el término de búsqueda
     const resultadosFiltrados = tablaDatos.filter((user) => {
-      const { nombre, apellido, correo } = user;
+      const { name, email } = user;
       const termino = query.toLowerCase();
 
       return (
-        nombre.toLowerCase().includes(termino) ||
-        apellido.toLowerCase().includes(termino) ||
-        correo.toLowerCase().includes(termino)
+        name.first.toLowerCase().includes(termino) ||
+        name.last.toLowerCase().includes(termino) ||
+        email.toLowerCase().includes(termino)
       );
     });
 
@@ -25,15 +25,28 @@ function Buscador({ tablaDatos, setTablaFiltrada }) {
     setTablaFiltrada(resultadosFiltrados);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      buscar();
+    }
+  };
+
   return (
     <div className="buscador-container">
+      <label htmlFor="buscadorInput">
+        Buscador
+      </label>
       <input
+        className="buscador-input"
         type="text"
+        id="buscadorInput"
         placeholder="Buscar por nombre, apellido o correo"
         value={query}
         onChange={handleInputChange}
+        onKeyDown={handleKeyPress}
+        aria-label="Campo de búsqueda"
       />
-      <button className="boton-buscador" onClick={buscar}>
+      <button className="boton-buscador" onClick={buscar} aria-label="Buscar">
         Buscar
       </button>
     </div>

@@ -1,41 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import getUsers from '../../services/getusers.service';
-import './TablaDatos.css';
+import React, { useState, useEffect } from "react";
+import getUsers from "../../services/getusers.service";
+import "./TablaDatos.css";
+import Buscador from "../Buscador/Buscador";
 
 function TablaDatos() {
-  const resultsPerPage = 10; // Número de resultados por página
+  // Cantidad de resultados por página
+  const resultsPerPage = 10;
+
+  // Estado local para usuarios y tabla filtrada
   const [users, setUsers] = useState([]);
+  const [tablaFiltrada, setTablaFiltrada] = useState([]);
+
+  // Estado local para la página actual
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Utiliza el efecto para cargar datos de usuarios cuando el componente se monta
   useEffect(() => {
-    // Obtiene los datos de usuarios desde el servicio al cargar el componente
     getUsers()
       .then((data) => {
         setUsers(data);
+        setTablaFiltrada(data);
       })
       .catch((error) => {
-        console.error('Error al obtener datos:', error);
+        console.error("Error al obtener datos:", error);
       });
   }, []);
 
-  // Calcula el número total de páginas en función de la cantidad total de usuarios
-  const totalPages = Math.ceil(users.length / resultsPerPage);
-
-  // Calcula el índice del último y primer resultado de la página actual
-  const indexOfLastResult = currentPage * resultsPerPage;
-  const indexOfFirstResult = indexOfLastResult - resultsPerPage;
-
-  // Obtiene los resultados de la página actual
-  const currentResults = users.slice(indexOfFirstResult, indexOfLastResult);
-
-  // Función para ir a la página siguiente
+  // Función para cambiar a la siguiente página
   const nextPage = () => {
-    if (currentPage < totalPages) {
+    if (currentPage < Math.ceil(tablaFiltrada.length / resultsPerPage)) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  // Función para ir a la página anterior
+  // Función para cambiar a la página anterior
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -45,32 +43,58 @@ function TablaDatos() {
   return (
     <div>
       <h2 className="tabla-titulo">Tabla de Datos de Usuarios</h2>
+
+      {/* Componente Buscador para filtrar la tabla */}
+      <Buscador tablaDatos={users} setTablaFiltrada={setTablaFiltrada} />
+
+      {/* Tabla para mostrar los datos */}
       <table className="tabla-datos">
+        <caption>Lista de usuarios</caption>
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Correo Electrónico</th>
-            <th>Edad</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Correo Electrónico</th>
+            <th scope="col">Edad</th>
           </tr>
         </thead>
         <tbody>
-          {currentResults.map((user, index) => (
-            <tr key={index}>
-              <td>{user.name.first}</td>
-              <td>{user.name.last}</td>
-              <td>{user.email}</td>
-              <td>{user.dob.age}</td>
-            </tr>
-          ))}
+          {tablaFiltrada
+            .slice(
+              (currentPage - 1) * resultsPerPage,
+              currentPage * resultsPerPage
+            )
+            .map((user, index) => (
+              <tr key={index}>
+                <td headers="nombre">{user.name.first}</td>
+                <td headers="apellido">{user.name.last}</td>
+                <td headers="email">{user.email}</td>
+                <td headers="edad">{user.dob.age}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
+
+      {/* Navegación de páginas */}
       <div className="tabla-botonera">
-        <button onClick={prevPage} disabled={currentPage === 1}>
+        <button
+          onClick={prevPage}
+          disabled={currentPage === 1}
+          aria-label="Página anterior"
+        >
           Anterior
         </button>
-        <span>Página {currentPage} de {totalPages}</span>
-        <button onClick={nextPage} disabled={currentPage === totalPages}>
+        <span>
+          Página {currentPage} de{" "}
+          {Math.ceil(tablaFiltrada.length / resultsPerPage)}
+        </span>
+        <button
+          onClick={nextPage}
+          disabled={
+            currentPage === Math.ceil(tablaFiltrada.length / resultsPerPage)
+          }
+          aria-label="Página siguiente"
+        >
           Siguiente
         </button>
       </div>
