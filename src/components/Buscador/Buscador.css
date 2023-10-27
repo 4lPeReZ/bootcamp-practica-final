@@ -1,0 +1,39 @@
+/* Buscador.css */
+
+/* Estilos para el contenedor */
+.buscador-container {
+    display: flex;
+    justify-content: space-between;
+    /* Alinea los elementos al principio y al final del contenedor */
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+/* Estilos para el input */
+input {
+    width: 90%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-right: 2rem;
+}
+
+/* Estilos para el botón */
+.boton-buscador {
+    width: 15%;
+    /* Permite que el botón se ajuste a su contenido */
+    padding: 0.5rem 1rem;
+    background-color: #646cff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #535bf2;
+    }
+}
