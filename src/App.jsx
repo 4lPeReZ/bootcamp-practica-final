@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import './App.css'
+import React from 'react';
+import TablaDatos from './components/TablaDatos/TablaDatos';
+
 
 function App() {
-
   return (
-    <>
-      <div className="App">
-        <h1>Hola</h1>
-      </div>
-    </>
-  )
+    <div className="App">
+      <TablaDatos />
+    </div>
+  );
 }
 
-export default App
+export default App;

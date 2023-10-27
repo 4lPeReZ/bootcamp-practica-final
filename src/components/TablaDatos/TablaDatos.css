@@ -1,0 +1,40 @@
+/* TablaDatos.css */
+.tabla-datos {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.tabla-titulo {
+    text-align: center;
+    /* Centra el texto horizontalmente */
+    margin: 0;
+    /* Elimina el margen superior predeterminado */
+    padding: 0.5rem 0;
+    /* Añade espacio entre el título y la tabla */
+}
+
+.tabla-datos th,
+.tabla-datos td {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+/* Estilos para filas pares (fondo gris claro) */
+.tabla-datos tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para filas impares (fondo blanco) */
+.tabla-datos tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.tabla-botonera {
+    text-align: center;
+    /* Centra los botones horizontalmente */
+    margin-top: 1rem;
+    /* Agrega margen superior para espaciarlos del contenido superior */
+}
