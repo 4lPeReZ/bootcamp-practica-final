@@ -1,7 +1,5 @@
 /* dark-mode.css */
 .dark-mode {
     background-color: #333;
-    /* Cambia el fondo a oscuro */
     color: #7e7878;
-    /* Cambia el color del texto a claro */
 }

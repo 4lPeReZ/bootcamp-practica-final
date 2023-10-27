@@ -2,7 +2,7 @@ import React from 'react';
 import TablaDatos from './components/TablaDatos/TablaDatos';
 import { DarkModeProvider, useDarkMode } from './providers/DarkModeProvider';
 import DarkModeToggle from './components/DarkModeToggle/DarkModeToggle';
-import './App.css'; // Importa los estilos globales
+import './App.css';
 
 function App() {
   const { isDarkMode } = useDarkMode();

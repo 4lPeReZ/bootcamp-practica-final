@@ -1,10 +1,8 @@
 /* Buscador.css */
-
 /* Estilos para el contenedor */
 .buscador-container {
     display: flex;
     justify-content: space-between;
-    /* Alinea los elementos al principio y al final del contenedor */
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
@@ -19,10 +17,7 @@ label {
     width: 20%;
     padding: 0.5rem;
     font-size: 1rem;
-/*     color: #646cff; */
-    /* Cambia el color de la etiqueta */
     font-weight: bold;
-    /* Hace que el texto sea negrita */
 }
 
 /* Estilos para el input */
@@ -37,7 +32,6 @@ label {
 /* Estilos para el botón */
 .boton-buscador {
     width: 15%;
-    /* Permite que el botón se ajuste a su contenido */
     padding: 0.5rem 1rem;
     background-color: #646cff;
     color: #fff;

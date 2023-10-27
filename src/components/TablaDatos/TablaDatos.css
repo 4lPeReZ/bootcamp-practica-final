@@ -8,11 +8,8 @@
 
 .tabla-titulo {
     text-align: center;
-    /* Centra el texto horizontalmente */
     margin: 0;
-    /* Elimina el margen superior predeterminado */
     padding: 0.5rem 0;
-    /* Añade espacio entre el título y la tabla */
 }
 
 .tabla-datos th,
@@ -34,12 +31,9 @@
 
 .tabla-botonera {
     text-align: center;
-    /* Centra los botones horizontalmente */
     margin-top: 1rem;
-    /* Agrega margen superior para espaciarlos del contenido superior */
 }
 
 .checkbox-seniors {
     margin-right: 0.5rem;
-    /* Agrega margen derecho para espaciarlos entre sí */
 }
